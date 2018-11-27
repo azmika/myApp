@@ -7,34 +7,34 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label floating>Firstname</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item>
-            <ion-label floating>Lastname</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-    <button ion-button block color="primary">Default/Primary</button>
-    <button ion-button block color="secondary">Secondary</button>
-    <button ion-button block color="danger">Danger</button>
-    <button ion-button block color="light">Light</button>
-    <button ion-button block color="dark">Dark</button>
-    <button ion-button block color="custom">Custom</button>
+  <!-- <pre>{{person | json }}</pre> -->
+  <!-- //shouldReorder adalah reserve word -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="listContact" [reorder]="shouldReorder" (ionItemReorder)="$event.applyTo(orang)">
+    <!-- <ion-list-header>Follow us on Twitter</ion-list-header> -->
+    <ion-item-sliding *ngFor="let ahli of orang">
+      <ion-item (click)="pushOrang(ahli)">
+        <ion-avatar item-left>
+          <img [src]="ahli.picture.thumbnail" alt="">
+        </ion-avatar>
+        {{ahli.name.first}} {{ahli.name.last}}
+        <ion-note item-right>{{ahli.phone}}</ion-note>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" icon-only>
+          <ion-icon name="archive"></ion-icon>
+        </button>  
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" icon-only>
+          <ion-icon name="flag"></ion-icon>
+        </button>  
+      </ion-item-options>
+  </ion-item-sliding>
   </ion-list>
-  
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

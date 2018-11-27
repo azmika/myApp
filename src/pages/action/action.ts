@@ -49,16 +49,16 @@ export class ActionPage {
       value: 'red',
     });
 
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'OK',
-      handler: data => {
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
-      }
-    });
-    alert.present();
-  }
+  //   alert.addButton('Cancel');
+  //   alert.addButton({
+  //     text: 'OK',
+  //     // handler: data => {
+  //     //   this.testRadioOpen = false;
+  //     //   this.testRadioResult = data;
+  //     // }
+  //   });
+  //   alert.present();
+   }
 
   showConfirm() {
     const confirm = this.alertCtrl.create({
